@@ -8,6 +8,8 @@ const tours = JSON.parse(
     fs.readFileSync(`${__dirname}/dev-data/tours-simple.json`)
 );
 
+app.use(express.json());
+
 // Route for '/' url + method with route Handler function
 app.get('/api/v1/tours', (req, res) => {
     res.status(200).json({
