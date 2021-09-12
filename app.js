@@ -10,18 +10,16 @@ const tours = JSON.parse(
 
 app.use(express.json());
 
-// Route for '/' url + method with route Handler function
-app.get('/api/v1/tours', (req, res) => {
+const getAllTours = (req, res) => {
     res.status(200).json({
         status: 'success',
         data: {
             tours: tours
         }
     });
-});
+};
 
-// Route for '/' url + method with route Handler function
-app.post('/api/v1/tours', (req, res) => {
+const createTour = (req, res) => { 
     // Creating a new id number
     const newId = tours[tours.length - 1].id + 1;
     // creating a new object by mergining
@@ -38,10 +36,9 @@ app.post('/api/v1/tours', (req, res) => {
             }
         });
     });
-});
+};
 
-// Route for '/:id' url + method with route Handler function
-app.get('/api/v1/tours/:id', (req, res) => {
+getTour = (req, res) => {
     // Extract and convert to a number
     const id = req.params.id * 1;
     // Return the element that matches id 
@@ -58,10 +55,9 @@ app.get('/api/v1/tours/:id', (req, res) => {
             tour: tour
         }
     });
-});
+};
 
-// Route for '/:id' url + method with route Handler function
-app.patch('/api/v1/tours/:id', (req, res) => {
+const updateTour = (req, res) => {
     // Extract and convert to a number
     const id = req.params.id * 1;
     if (id > tours.length) {
@@ -76,10 +72,9 @@ app.patch('/api/v1/tours/:id', (req, res) => {
             tour: '<Updated Tour...>'
         }
     });
-});
+};
 
-// Route for '/:id' url + method with route Handler function
-app.delete('/api/v1/tours/:id', (req, res) => {
+const deleteTour = (req, res) => {
     // Extract and convert to a number
     const id = req.params.id * 1;
     if (id > tours.length) {
@@ -92,7 +87,22 @@ app.delete('/api/v1/tours/:id', (req, res) => {
         status: 'success',
         data: null
     });
-});
+};
+
+// Route for '/' url + method with route Handler function
+app.get('/api/v1/tours', getAllTours);
+
+// Route for '/' url + method with route Handler function
+app.post('/api/v1/tours', createTour);
+
+// Route for '/:id' url + method with route Handler function
+app.get('/api/v1/tours/:id', getTour);
+
+// Route for '/:id' url + method with route Handler function
+app.patch('/api/v1/tours/:id', updateTour);
+
+// Route for '/:id' url + method with route Handler function
+app.delete('/api/v1/tours/:id', deleteTour);
 
 const port = 3000;
 app.listen(port, () => {
