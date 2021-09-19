@@ -90,19 +90,15 @@ const deleteTour = (req, res) => {
 };
 
 // Route for '/' url + method with route Handler function
-app.get('/api/v1/tours', getAllTours);
-
-// Route for '/' url + method with route Handler function
-app.post('/api/v1/tours', createTour);
-
-// Route for '/:id' url + method with route Handler function
-app.get('/api/v1/tours/:id', getTour);
+app.route('/api/v1/tours')
+.get(getAllTours)
+.post(createTour)
 
 // Route for '/:id' url + method with route Handler function
-app.patch('/api/v1/tours/:id', updateTour);
-
-// Route for '/:id' url + method with route Handler function
-app.delete('/api/v1/tours/:id', deleteTour);
+app.route('/api/v1/tours/:id')
+.get(getTour)
+.patch(updateTour)
+.delete(deleteTour);
 
 const port = 3000;
 app.listen(port, () => {
