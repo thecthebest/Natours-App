@@ -4,9 +4,14 @@ const app = express();
 
 const fs = require('fs');
 
+const morgan = require('morgan');
+
 const tours = JSON.parse(
     fs.readFileSync(`${__dirname}/dev-data/tours-simple.json`)
 );
+
+// Middleware for logging hhtp requests
+app.use(morgan('dev'));
 
 app.use(express.json());
 
