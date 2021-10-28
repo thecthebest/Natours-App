@@ -12,6 +12,7 @@ app.use(morgan('dev'));
 
 app.use(express.json());
 
+app.use(express.static(`${__dirname}/public`));
 
 // middleware for routes
 app.use('/api/v1/tours', toursRoute);
