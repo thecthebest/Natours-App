@@ -1,6 +1,7 @@
+const dotenv = require('dotenv');
+
 const app = require('./app');
 
-const dotenv = require('dotenv');
 
 // To specify the path for config file
 dotenv.config({path: './config.env'});
