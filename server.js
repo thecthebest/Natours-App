@@ -10,7 +10,7 @@ console.log(app.get('env'));
 // To check the current environment variables set by nodeJS
 console.log(process.env);
 
-const port = 3000;
+const port = process.env.port;
 app.listen(port, () => {
     console.log(`listening on port ${port}`)
 });
