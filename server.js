@@ -1,5 +1,9 @@
 const app = require('./app');
 
+const dotenv = require('dotenv');
+
+// To specify the path for config file
+dotenv.config({path: './config.env'});
 // To check the current environment set by express
 console.log(app.get('env'));
 
