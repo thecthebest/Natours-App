@@ -7,8 +7,10 @@ const morgan = require('morgan');
 const toursRoute = require('./route/tourRoutes');
 const usersRoute = require('./route/userRoutes');
 
-// Middleware for logging hhtp requests
-app.use(morgan('dev'));
+if (process.env.NODE_ENV === 'development') {
+    // Middleware for logging hhtp requests
+    app.use(morgan('dev'));
+}
 
 app.use(express.json());
 
